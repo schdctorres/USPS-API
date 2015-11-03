@@ -120,10 +120,13 @@ class ExpressMailLabel extends USPSBase {
 	  */
   	$required = array(
   		'Option' => '',
-  		'Revision' => 0,
+  		'Revision' => 2,
   		'EMCAAccount' => '',
   		'EMCAPassword' => '',
   		'ImageParameters' => '');
+	  /*
+		'Container' => 'FLAT RATE ENVELOPE',
+		'Size' => 'REGULAR');
 	  /*,
   		'26:FlatRate' => '',
   		'27:SundayHolidayDelivery' => '',

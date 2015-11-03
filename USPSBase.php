@@ -224,8 +224,8 @@ class USPSBase {
       $errorInfo = $this->getValueByKey($arrayResponse, 'Error');
 
       if($errorInfo) {
-        $this->setErrorCode( $errorInfo['Number'] );
-        $this->setErrorMessage( $errorInfo['Description'] );
+        isset($errorInfo['Number']) ? $this->setErrorCode( $errorInfo['Number'] ) : '';
+        isset($errorInfo['Description']) ? $this->setErrorMessage( $errorInfo['Description'] ) : '';
       }
     }
 
@@ -281,7 +281,7 @@ class USPSBase {
     $this->setField('FromState', $state);
     $this->setField('FromZip5', $zip);
     $this->setField('FromZip4', $zip4);
-    $this->setField('FromPhone', $phone);
+    $this->setField('FromPhone', str_replace(array("-"," ","."), "", $phone));
 
     return $this;
   }
@@ -310,7 +310,7 @@ class USPSBase {
     $this->setField('ToState', $state);
     $this->setField('ToZip5', $zip);
     $this->setField('ToZip4', $zip4);
-    $this->setField('ToPhone', $phone);
+    $this->setField('ToPhone', str_replace(array("-"," ","."), "", $phone));
     ($pobox) ? $this->setField('ToPOBoxFlag', $pobox) : '';
     return $this;
   }
@@ -457,6 +457,7 @@ class USPSBase {
    */
   public function setErrorMessage($message='') {
     $this->errorMessage = $message;
+    if($message) log_message("ERROR", __CLASS__.':'.__FUNCTION__.':'.$this->errorMessage);
     return $this;
   }
   /**
