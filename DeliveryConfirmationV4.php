@@ -168,8 +168,7 @@ class DeliveryConfirmationV4 extends USPSBase {
     $required = array(
         'Option' => '',
         'Revision' => '2',
-        'ImageParameters' => '',
-        'Container' => 'FLAT RATE ENVELOPE');
+        'ImageParameters' => '');
         /*
         '26:FlatRate' => '',
         '27:SundayHolidayDelivery' => '',
